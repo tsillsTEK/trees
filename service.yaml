@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tree-service
+  annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - port: 8080
+      targetPort: 8080
+#  loadBalancerSourceRanges:
+#    - "143.231.0.0/16"
